@@ -101,6 +101,9 @@ git push --set-upstream origin update-README
 #reunite branch with master = pull request
 #you can also resolve conflicts in github's text editor
 #can get others to review pull requests
+#change branch
+git switch master
+
 v1.0.0
 third number = patches & fixes
 second number = new feature
