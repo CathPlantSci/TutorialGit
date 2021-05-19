@@ -8,3 +8,107 @@ git config --global core.editor "nano -w"
 
 #Start a repository
 git init
+
+#All the time
+git status
+git add test.txt
+git commit -m "new file test.txt"
+git log
+git diff
+
+#Time travel
+#Top commit is called head
+#next is HEAD ~1
+
+git diff HEAD~1 test.txt
+
+git log
+commit 67013e943cc2352999d2adcc584f88cf25929282 (HEAD -> master)
+Author: Catherine Evans <cxe941@student.bham.ac.uk>
+Date:   Wed May 19 09:57:14 2021 +0100
+
+    added a clue to test.txt
+
+commit 2ec08fa5358f5bba372095a28acaacc1e993f9b5
+Author: Catherine Evans <cxe941@student.bham.ac.uk>
+Date:   Wed May 19 09:53:26 2021 +0100
+
+    new file test.txt
+
+#what was the earlier version?
+git diff 2ec08fa5 test.txt
+git checkout 2ec08fa5 test.txt #checkout takes this version out of the cupboard
+cat test.txt
+#commit again if you want to keep the earlier version
+git checkout HEAD test.txt #or get back to current version
+cat test.txt
+
+git checkout 2ec08fa5 #allows you to see all the files at this timepoint
+#you'll get a "detached head" message. best don't make any commits
+
+
+git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   git_commands.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	temporary.dat
+
+#untracked file warning is annoying for temp files
+nano .gitignore
+#add filenames (inc. commandline wildcards) to ignore
+#override with git add -f
+
+
+I use the following to give me a list of commands https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+More smaller files recommended for working with git
+
+#put computer git repository on github
+#commands c+p from github
+
+#do once
+git push --set-upstream origin master
+#then
+git push #sends to website
+git pull #brings new changes from the website
+
+Auto-merging test.txt
+CONFLICT (content): Merge conflict in test.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+#oh no
+Hello, this is a test file
+The pipes are the clue
+<<<<<<< HEAD
+It's too cold in here
+=======
+It's too hot in here
+>>>>>>> 6a44878d2756dd60437d1a6bc175fe6141fe6d4c
+
+#showing both versions
+#merge manually how you want it & delete arrows & stuff
+#git won't let you push until you resolve a merge conflict
+#what do I do if I want edit a feature independently?
+
+#create a branch
+#great for not breaking code that works, and not inconveniencing collaborators
+git checkout -b 'update-README'
+git push --set-upstream origin update-README
+
+#reunite branch with master = pull request
+#you can also resolve conflicts in github's text editor
+#can get others to review pull requests
+v1.0.0
+third number = patches & fixes
+second number = new feature
+first number = major new release of integrated features
+#releases package up the code of a specific commit
+
+#licenses = what to do with code if public
+#non-commercial open source license = GNU General Public License
+#use at your own risk
+#create a LICENSE.md
+
