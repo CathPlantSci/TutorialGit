@@ -1,0 +1,10 @@
+#Useful commands for github
+
+#Initial setup
+git config --global user.name "Catherine Evans"
+git config --global user.email "cxe941@student.bham.ac.uk"
+git config --global core.autocrlf input
+git config --global core.editor "nano -w"
+
+#Start a repository
+git init
